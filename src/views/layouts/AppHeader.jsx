@@ -1,5 +1,5 @@
 import React from 'react'
-import {Layout} from 'antd'
+import {Layout, Avatar, Icon, Tooltip} from 'antd'
 
 const AppHeader = props => {
     const {menuName} = props
@@ -9,7 +9,12 @@ const AppHeader = props => {
                 <span>{menuName}</span>
             </div>
             <div className="header-right">
-                admin
+                <Avatar className="user-avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                <span className="user-name">admin</span> 
+                <Tooltip title="退出" placement="bottom">
+                    <Icon  className="logout" type="logout" />
+                </Tooltip>
+                
             </div>
         </div>
     )

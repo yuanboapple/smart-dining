@@ -1,7 +1,8 @@
 import { Menu, Icon } from 'antd'
 import React, { useState, useEffect } from 'react'
 import {Link, withRouter} from 'react-router-dom'
-
+import {useDispatch} from 'react-redux'
+import {changeHeaderTitle} from '@/store/actions' 
 // 处理 pathname
 const getOpenKeys = string => {
     let newStr = '',
@@ -15,6 +16,7 @@ const getOpenKeys = string => {
 }
 
 const CustomMenu = props => {
+    const dispatch = useDispatch()
     const [state, setstate] = useState({
         openKeys: [],
         selectedKeys: []  
@@ -74,7 +76,8 @@ const CustomMenu = props => {
         )
     }
     const onClickMenu = (menu) => {
-        const {key} = menu
+        const {key, item: {node}} = menu
+        dispatch(changeHeaderTitle(node.innerText))
         setstate(prevState => ({
             ...prevState,
             selectedKeys: [key]

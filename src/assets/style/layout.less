@@ -1,3 +1,23 @@
+.aside{
+    .logo{
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        color: #fff;
+        padding-left: 24px;
+        .title{
+            font-size: 18px;
+            letter-spacing: 0.22px;
+        }
+        .fold{
+            position: absolute;
+            right: 16px;
+            font-size: 16px;
+        }
+    }
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -10,6 +30,19 @@
             color: #333;
             font-size: 18px;
             letter-spacing: 0.22px;
+        }
+    }
+    &-right {
+        display: flex;
+        align-items: center;
+        .user-name{
+            margin-left: 10px;
+            margin-right: 30px;
+            color: #333;
+            font-size: 14px;
+        }
+        .logout{
+            color: #333;
         }
     }
 }

@@ -1,6 +1,8 @@
 import { Layout} from 'antd'
 import React, { useState, useEffect } from 'react'
 import {withRouter, Redirect, Switch, Route} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import {changeHeaderTitle} from '@/store/actions' 
 import menus from './menu'
 import AppAside from './AppAside'
 import menu from './menu'
@@ -10,29 +12,32 @@ import AppHeader from './AppHeader'
 
 
 const {Content} = Layout
+let res = ''
 //获取当前路由对应的菜单名
 const getPathName = (path, menu) => { 
     for (let item of menu) {
-        if(item.subs && item.subs.length) return getPathName(path, item.subs)
+        if(item.subs && item.subs.length)  getPathName(path, item.subs)
         if(item.key === path) {
-            return item.title
+            res = item.title
+            break
         }
     }
+    return res
 }
 const DefaultLayout = props => {
-    const [menuName, setMenuName] = useState('')
-
+    const {title} = useSelector(state => state.headerTitle)
+    const dispatch = useDispatch()
     //刷新获取当前路由对应的菜单名
     useEffect(() => {
         const {location: {pathname}} = props
-        setMenuName(getPathName(pathname, menu))
+        dispatch(changeHeaderTitle(getPathName(pathname, menu)))
     }, [])
 
     return (
         <Layout>
             <AppAside menu={menus}></AppAside>
             <Layout style={{minHeight: '100vh', backgroundColor: '#F8F9FA'}}>
-                <AppHeader menuName={menuName}/>
+                <AppHeader menuName={title}/>
                 <Content>
                     <Switch>
                         {
