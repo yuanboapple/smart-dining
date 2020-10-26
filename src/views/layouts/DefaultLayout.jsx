@@ -40,22 +40,25 @@ const DefaultLayout = props => {
                 <AppHeader menuName={title}/>
                 <Content>
                     <Switch>
-                        {
-                            routes.map(item => {
-                                return (
-                                    <Route
-                                        key={item.path}
-                                        path={item.path}
-                                        exact={item.exact}
-                                        render={
-                                            props => (<item.component {...props}/>)
-                                        }
-                                    >
-                                        
-                                    </Route>
-                                )
-                            })
-                        }
+                        <div className="container">
+                            {
+                                routes.map(item => {
+                                    return (
+                                        <Route
+                                            key={item.path}
+                                            path={item.path}
+                                            exact={item.exact}
+                                            render={
+                                                props => (<item.component {...props}/>)
+                                            }
+                                        >
+                                            
+                                        </Route>
+                                    )
+                                })
+                            }
+                        </div>
+
                         <Redirect to='/404' />
                     </Switch>
                 </Content>

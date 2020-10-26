@@ -1,0 +1,55 @@
+.login-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, #26D1AE, #30C8C7);
+    width: 100vw;
+    height: 100vh;
+    .wrap{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       .login-img {
+           width: 572px;
+           height: 547px;
+       }
+       .login-form{
+            width: 500px;
+            margin-left: 126px;
+            background-color: #fff;
+            box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.09);
+            border-radius: 4px;
+            padding: 55px 80px 87px 80px;
+            text-align: center;
+            &-wrap{
+                width: 300px;
+                margin: 0 auto;
+                margin-top: 45px;
+            }
+            &-title{
+                font-size: 36px;
+                letter-spacing: 0.43px;
+                color: #26D1AE;
+                font-weight: 500;
+            }
+            &-forgot{
+                color: #999;
+                float: right;
+                font-size: 12px;
+            }
+            &-button{
+                margin-top: 20px;
+                width: 100%;
+            }
+            &-password{
+                margin-bottom: 0px;
+            }
+            .ant-form-explain{
+                text-align: left;
+            }
+       }
+    }
+}
