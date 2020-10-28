@@ -43,18 +43,18 @@ const DefaultLayout = props => {
                         <div className="container">
                             {
                                 routes.map(item => {
-                                    return (
-                                        <Route
-                                            key={item.path}
-                                            path={item.path}
-                                            exact={item.exact}
-                                            render={
-                                                props => (<item.component {...props}/>)
-                                            }
-                                        >
-                                            
-                                        </Route>
-                                    )
+                                        return (
+                                            <Route
+                                                key={item.path}
+                                                path={item.path}
+                                                exact={item.exact}
+                                                render={
+                                                    props => (<item.component {...props}/>)
+                                                }
+                                            >
+                                                
+                                            </Route>
+                                        )
                                 })
                             }
                         </div>

@@ -23,7 +23,7 @@ const CustomMenu = props => {
     })
     let {openKeys, selectedKeys} = state
 
-    // 页面刷新的时候可以定位到 menu 显示
+    // 浏览器路径的时候可以定位到 menu 显示
     useEffect(() => {
         let { pathname } = props.location
         setstate(prevState => {
@@ -33,10 +33,12 @@ const CustomMenu = props => {
                 openKeys: getOpenKeys(pathname)
             }
         })
+        console.log(props)
     }, [props])
     
     // 只展示一个Submenu
     const onOpenChange = openKeys => {
+        // console.log(openKeys)
         setstate(prevState => {
             if(openKeys.length < 2) return {...prevState, openKeys}
             const lastOpenKey = openKeys[openKeys.length - 1]
