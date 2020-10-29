@@ -1,13 +1,13 @@
 import {CHANGE_HEADER_TITLE} from '../actionTypes'
 
 const initState = {
-    title: ''
+    headerTitle: ''
 }
 
 const headerTitle = (state = initState, action) => {
     switch (action.type) {
         case CHANGE_HEADER_TITLE:
-            return {...state, title: action.title}
+            return {...state, headerTitle: action.title}
         default:
             return {...state}
     }

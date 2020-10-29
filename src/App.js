@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter , Route, Switch, Redirect} from 'react-router-dom'
+import {HashRouter,BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import loadable from './utils/loadable';
 const DefaultLayout = loadable(() => import(/* webpackChunkName: 'default' */ './views/layouts')) 
 const Login = loadable(() => import(/* webpackChunkName: 'login' */ './views/login'))

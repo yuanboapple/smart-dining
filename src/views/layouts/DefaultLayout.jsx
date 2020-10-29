@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import {withRouter, Redirect, Switch, Route} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {changeHeaderTitle} from '@/store/actions' 
+import {getMenuByPath} from '@/utils/util'
 import menus from './menu'
 import AppAside from './AppAside'
 import menu from './menu'
@@ -25,19 +26,20 @@ const getPathName = (path, menu) => {
     return res
 }
 const DefaultLayout = props => {
-    const {title} = useSelector(state => state.headerTitle)
+    const {location: {pathname}} = props
+    const {headerTitle} = useSelector(state => state.headerTitle)
+    const {title, extra: {fKey, fTitle}} = getMenuByPath(pathname, menus)
     const dispatch = useDispatch()
     //刷新获取当前路由对应的菜单名
     useEffect(() => {
-        const {location: {pathname}} = props
-        dispatch(changeHeaderTitle(getPathName(pathname, menu)))
+        dispatch(changeHeaderTitle(fTitle || title))
     }, [])
 
     return (
         <Layout>
             <AppAside menu={menus}></AppAside>
             <Layout style={{minHeight: '100vh', backgroundColor: '#F8F9FA'}}>
-                <AppHeader menuName={title}/>
+                <AppHeader menuName={headerTitle}/>
                 <Content>
                     <Switch>
                         <div className="container">
@@ -49,7 +51,9 @@ const DefaultLayout = props => {
                                                 path={item.path}
                                                 exact={item.exact}
                                                 render={
-                                                    props => (<item.component {...props}/>)
+                                                    props => {
+                                                        return (<item.component  {...props}/>)
+                                                    }
                                                 }
                                             >
                                                 

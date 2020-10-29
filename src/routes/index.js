@@ -24,12 +24,8 @@ const TimesSetting = loadable(() => import(/* webpackChunkName: 'TimesSetting' *
 const PublicNumberSetting = loadable(() => import(/* webpackChunkName: 'PublicNumberSetting' */ '@/views/systemSetting/publicNumberSetting'))
 const routes = [
     {path: '/index', exact: true, name: '首页', component: Index},
-    {
-        path: '/foodCenter/eatingManage', exact: true, name: '用餐管理', component: EatingManage
-    },
-    {
-        path: '/foodCenter/eatingManage/publishOrder', exact: true, name: '发布预约', component: PublishOrder
-    },
+    {path: '/foodCenter/eatingManage', exact: true, name: '用餐管理', component: EatingManage},
+    {path: '/foodCenter/eatingManage/publishOrder', exact: true, name: '发布预约', component: PublishOrder},
     {path: '/foodCenter/foodManage', exact: true, name: '菜品管理', component: FoodManage},
     {path: '/foodCenter/menuManage', exact: true, name: '菜单管理', component: MenuManage},
     {path: '/financialCenter/consumeRecord', exact: true, name: '消费记录', component: ConsumeRecord},

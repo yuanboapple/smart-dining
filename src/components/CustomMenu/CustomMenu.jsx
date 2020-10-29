@@ -1,6 +1,7 @@
 import { Menu, Icon } from 'antd'
 import React, { useState, useEffect } from 'react'
 import {Link, withRouter} from 'react-router-dom'
+import {getMenuByPath} from '@/utils/util'
 import {useDispatch} from 'react-redux'
 import {changeHeaderTitle} from '@/store/actions' 
 // 处理 pathname
@@ -26,19 +27,18 @@ const CustomMenu = props => {
     // 浏览器路径的时候可以定位到 menu 显示
     useEffect(() => {
         let { pathname } = props.location
+        const {extra: {fKey, fTitle}} = getMenuByPath(pathname, props.menu)
         setstate(prevState => {
             return {
                 ...prevState,
-                selectedKeys: [pathname],
+                selectedKeys: fKey || [pathname],
                 openKeys: getOpenKeys(pathname)
             }
         })
-        console.log(props)
     }, [props])
     
     // 只展示一个Submenu
     const onOpenChange = openKeys => {
-        // console.log(openKeys)
         setstate(prevState => {
             if(openKeys.length < 2) return {...prevState, openKeys}
             const lastOpenKey = openKeys[openKeys.length - 1]
@@ -72,7 +72,8 @@ const CustomMenu = props => {
                 }>
                 {subs &&
                     subs.map(item => {
-                        return item.subs && item.subs.length > 0 ? renderSubMenu(item) : renderMenuItem(item)
+                            if('extra' in item && 'hidden' in item.extra && item.extra.hidden) return
+                            return item.subs && item.subs.length > 0 ? renderSubMenu(item) : renderMenuItem(item)
                     })}
             </Menu.SubMenu>
         )
